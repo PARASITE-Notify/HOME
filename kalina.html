@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KALINA | Parasite Notify</title>
+<meta name="description" content="KALINA — intelligence for better car decisions, powered by market data and analysis.">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pn-system.css">
+<script src="js/i18n.js" defer></script>
+<style>
+  :root{ --accent:var(--kalina); }
+  .hero{padding:120px 0 90px;background:radial-gradient(ellipse 900px 460px at 50% -10%, rgba(226,100,59,0.09), transparent 60%);border-bottom:1px solid var(--line);}
+  .hero .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:24px;}
+  .hero-cat{color:var(--kalina);}
+  .hero h1{font-size:clamp(36px,6vw,66px);line-height:1.05;max-width:760px;}
+  .hero p{font-size:17px;color:var(--ink-dim);max-width:480px;}
+  .hero-visual{width:100%;margin-top:36px;aspect-ratio:16/7;}
+  .score-visual{display:flex;align-items:center;gap:30px;padding:36px;}
+  .score-ring{width:120px;height:120px;border-radius:50%;border:6px solid var(--line-strong);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;}
+  .score-ring::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:6px solid var(--kalina);clip-path:polygon(0 0,84% 0,84% 100%,0 100%);}
+  .score-ring .num{font-family:var(--mono);font-size:24px;}
+  .score-detail{font-family:var(--mono);font-size:13px;color:var(--ink-dim);line-height:1.9;}
+  .problem-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  .problem-block .col h4{font-family:var(--display);font-size:18px;margin-bottom:12px;}
+  .problem-block .col p{color:var(--ink-dim);font-size:14.5px;}
+  .factor-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .factor{background:var(--bg-0);padding:28px 24px;}
+  .factor .n{font-family:var(--mono);font-size:11px;color:var(--kalina);margin-bottom:10px;}
+  .factor h4{font-family:var(--display);font-size:16px;margin-bottom:8px;}
+  .factor p{font-size:13.5px;color:var(--ink-dim);}
+  .cta-final{text-align:left;}
+  .cta-final h2{font-size:clamp(30px,4.6vw,52px);max-width:640px;}
+  .cta-final p{color:var(--ink-dim);margin-top:18px;max-width:460px;}
+  @media(max-width:860px){ .problem-block,.factor-list{grid-template-columns:1fr;} .score-visual{flex-direction:column;align-items:flex-start;} }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo"><img src="full-logo.png" alt="Parasite Notify"></a>
+    <div class="nav-links">
+      <a href="index.html#products" data-i18n="nav.products">Products</a>
+      <a href="index.html#company" data-i18n="nav.company">Company</a>
+      <a href="index.html#technology" data-i18n="nav.technology">Technology</a>
+      <a href="index.html#news" data-i18n="nav.news">News</a>
+      <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <a href="index.html#products" class="nav-cta" data-i18n="nav.view_products">View Products</a>
+
+    <!-- Language Switcher -->
+    <div class="language-select-wrap">
+      <button type="button" class="language-select" id="languageSelect" aria-haspopup="listbox" aria-expanded="false">
+        <span id="currentLanguage">JP / 日本語</span>
+        <span class="language-arrow">⌄</span>
+      </button>
+      <div class="language-menu" id="languageMenu" role="listbox" aria-label="Language">
+        <button type="button" class="language-option active" data-lang="ja"><span>JP</span><span>日本語</span></button>
+        <button type="button" class="language-option" data-lang="en"><span>EN</span><span>English</span></button>
+        <button type="button" class="language-option" data-lang="ko"><span>KO</span><span>한국어</span></button>
+        <button type="button" class="language-option" data-lang="zh"><span>ZH</span><span>中文</span></button>
+      </div>
+    </div>
+
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#products" data-i18n="mobile_menu.products">Products</a>
+    <a href="index.html#company" data-i18n="mobile_menu.company">Company</a>
+    <a href="index.html#technology" data-i18n="mobile_menu.technology">Technology</a>
+    <a href="index.html#news" data-i18n="mobile_menu.news">News</a>
+    <a href="index.html#contact" data-i18n="mobile_menu.contact">Contact</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow hero-cat" data-i18n="kalina.hero_eyebrow">Automotive Intelligence</div>
+    <h1 class="reveal" data-i18n="kalina.hero_title">Intelligence for better car decisions.</h1>
+    <p class="reveal" data-i18n="kalina.hero_desc">KALINA reads pricing, condition, and market data to tell you whether a used car is actually worth buying — not just what it costs.</p>
+    <div class="reveal" style="display:flex;gap:16px;">
+      <a href="#" class="btn-accent" data-i18n="kalina.hero_cta">Check a listing</a>
+      <a href="#how" class="btn-ghost" data-i18n="kalina.hero_cta_ghost">How KALINA works</a>
+    </div>
+    <div class="visual hero-visual reveal">
+      <div class="score-visual">
+        <div class="score-ring"><span class="num">8.4</span></div>
+        <div class="score-detail">
+          Fair price range: ¥1.42M – ¥1.58M<br>
+          Market days-on-lot: 14 avg<br>
+          Condition confidence: high
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-i18n="kalina.problem_eyebrow">The problem</div>
+      <h2 data-i18n="kalina.problem_title">Used car listings all look the same.</h2>
+    </div>
+    <div class="problem-block reveal">
+      <div class="col"><h4 data-i18n="kalina.problem_col_1_title">What you see</h4><p data-i18n="kalina.problem_col_1_desc">A price, a photo set, and a mileage number — no sense of whether that price is fair or that car is reliable.</p></div>
+      <div class="col"><h4 data-i18n="kalina.problem_col_2_title">What you need</h4><p data-i18n="kalina.problem_col_2_desc">Comparable market pricing, condition signals, and a straight answer on whether this specific car is worth the ask.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-i18n="kalina.how_eyebrow">How KALINA works</div>
+      <h2 data-i18n="kalina.how_title">Data in, a decision out.</h2>
+      <p data-i18n="kalina.how_desc">KALINA combines three signals into one score, so the analysis is visible, not a black box.</p>
+    </div>
+    <div class="factor-list reveal">
+      <div class="factor"><div class="n" data-i18n="kalina.factor_01_title">Market data</div><h4 data-i18n="kalina.factor_01_title">Comparable pricing</h4><p data-i18n="kalina.factor_01_desc">Thousands of similar listings, tracked over time, set the fair-price range.</p></div>
+      <div class="factor"><div class="n" data-i18n="kalina.factor_02_title">AI analysis</div><h4 data-i18n="kalina.factor_02_title">Condition &amp; history</h4><p data-i18n="kalina.factor_02_desc">Photos, listing text, and history reports are read for risk signals.</p></div>
+      <div class="factor"><div class="n" data-i18n="kalina.factor_03_title">Kalina Score</div><h4 data-i18n="kalina.factor_03_title">One number</h4><p data-i18n="kalina.factor_03_desc">Price, condition, and market position combined into a single 0–10 score.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-i18n="kalina.pref_eyebrow">User preferences</div>
+      <h2 data-i18n="kalina.pref_title">Weighted to what matters to you.</h2>
+      <p data-i18n="kalina.pref_desc">Prioritizing reliability over price, or willing to trade condition for a deal — KALINA's decision support adjusts to the trade-offs you actually care about, not a generic average.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt cta-final">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="color:var(--kalina)" data-i18n="kalina.cta_eyebrow">Get started</div>
+    <h2 class="reveal" data-i18n="kalina.cta_title">Paste a listing, get a score.</h2>
+    <p class="reveal" data-i18n="kalina.cta_desc">See the fair price range and Kalina Score before you commit to a viewing.</p>
+    <div class="reveal" style="margin-top:28px;"><a href="#" class="btn-accent" data-i18n="kalina.cta_button">Check a listing</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col"><div class="logo"><img src="full-logo.png" alt="Parasite Notify"></div><p data-i18n="index.footer">An independent technology company building HACO, KALINA, and FARO.</p></div>
+      <div class="foot-col"><h5 data-i18n="index.footer_products">Products</h5><a href="haco.html" data-i18n="common.haco">HACO</a><a href="kalina.html" data-i18n="common.kalina">KALINA</a><a href="faro.html" data-i18n="common.faro">FARO</a></div>
+      <div class="foot-col"><h5 data-i18n="index.footer_company">Company</h5><a href="index.html#company" data-i18n="index.footer_about">About</a><a href="index.html#technology" data-i18n="index.footer_tech">Technology</a><a href="index.html#news" data-i18n="index.footer_news">News</a></div>
+      <div class="foot-col"><h5 data-i18n="index.footer_legal">Legal</h5><a href="#" data-i18n="index.footer_privacy">Privacy Policy</a><a href="#" data-i18n="index.footer_terms">Terms</a><a href="index.html#contact" data-i18n="index.footer_contact">Contact</a></div>
+    </div>
+    <div class="foot-bottom"><span data-i18n="index.footer_copyright">© 2026 Parasite Notify Corporation</span><span>kalina.parasite-notify.com</span></div>
+  </div>
+</footer>
+
+<script src="pn-system.js"></script>
+</body>
+</html>
