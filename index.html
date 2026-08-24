@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parasite Notify Corporation | Independent Technology Company</title>
 <meta name="description" content="Parasite Notify builds independent products — HACO, KALINA, FARO — across commerce, automotive intelligence, and software creation.">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -65,7 +68,9 @@
     display:flex;align-items:center;justify-content:space-between;
     padding:20px 32px;max-width:1180px;margin:0 auto;
   }
-  .logo{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:0.02em;}
+  .logo{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:0.02em;display:flex;align-items:center;}
+  .logo img{height:28px;width:auto;display:block;}
+  .foot-col .logo img{height:26px;}
   .nav-links{display:flex;gap:36px;font-size:14px;color:var(--ink-dim);}
   .nav-links a{transition:color .25s ease;}
   .nav-links a:hover{color:var(--ink);}
@@ -183,15 +188,6 @@
   .company-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
   .company-grid p{color:var(--ink-dim);font-size:16px;margin-bottom:18px;max-width:480px;}
 
-  /* ---------- CAREERS ---------- */
-  .careers-box{
-    border:1px solid var(--line);padding:56px 48px;border-radius:6px;
-    display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;
-    background:var(--bg-1);
-  }
-  .careers-box h3{font-size:28px;margin-bottom:10px;}
-  .careers-box p{color:var(--ink-dim);font-size:15px;max-width:360px;}
-
   /* ---------- CONTACT ---------- */
   .contact{text-align:left;}
   .contact h2{font-size:clamp(34px,5.4vw,64px);line-height:1.06;max-width:760px;}
@@ -226,7 +222,7 @@
 
 <header>
   <nav class="wrap">
-    <a href="#" class="logo">PARASITE NOTIFY</a>
+    <a href="index.html" class="logo"><img src="full-logo.png" alt="Parasite Notify"></a>
     <div class="nav-links">
       <a href="#products">Products</a>
       <a href="#company">Company</a>
@@ -451,20 +447,6 @@
   </div>
 </section>
 
-<!-- 11 CAREERS -->
-<section>
-  <div class="wrap">
-    <div class="careers-box reveal">
-      <div>
-        <div class="eyebrow">Careers</div>
-        <h3 style="margin-top:14px;">Build with us.</h3>
-        <p>We're looking for people who want to build products from zero.</p>
-      </div>
-      <a href="#contact" class="btn-primary">Open positions</a>
-    </div>
-  </div>
-</section>
-
 <!-- 12 CONTACT -->
 <section id="contact" class="alt contact">
   <div class="wrap">
@@ -482,7 +464,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-col">
-        <div class="logo">PARASITE NOTIFY</div>
+        <div class="logo"><img src="full-logo.png" alt="Parasite Notify"></div>
         <p>An independent technology company building HACO, KALINA, and FARO.</p>
       </div>
       <div class="foot-col">
@@ -495,7 +477,6 @@
         <h5>Company</h5>
         <a href="#company">About</a>
         <a href="#technology">Technology</a>
-        <a href="#">Careers</a>
         <a href="#news">News</a>
       </div>
       <div class="foot-col">
