@@ -1,0 +1,134 @@
+/* ============================================================
+   Language Switcher
+   ============================================================ */
+
+.language-select-wrap {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+/* View Products ボタンと完全に同じスタイル */
+.language-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--line-strong);
+  padding: 9px 18px;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+  white-space: nowrap;
+}
+
+.language-select:hover {
+  border-color: var(--ink);
+  background: rgba(245, 244, 241, 0.04);
+  color: var(--ink);
+}
+
+.language-select:active {
+  transform: scale(0.97);
+}
+
+.language-arrow {
+  font-size: 9px;
+  color: var(--ink-faint);
+  transition: transform 0.25s ease;
+  margin-left: 2px;
+}
+
+.language-select[aria-expanded="true"] .language-arrow {
+  transform: rotate(180deg);
+  color: var(--ink);
+}
+
+/* ドロップダウンメニュー */
+.language-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 140px;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 4px 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.language-menu.open {
+  display: block;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 16px;
+  background: transparent;
+  border: 0;
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  text-align: left;
+}
+
+.language-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--ink);
+}
+
+.language-option.active {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.language-option.active::after {
+  content: '✓';
+  color: var(--accent);
+  font-size: 12px;
+  margin-left: auto;
+}
+
+.language-option span:first-child {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  min-width: 30px;
+}
+
+.language-option span:last-child {
+  font-size: 13px;
+}
+
+/* ヘッダー内での配置（View Products と同様） */
+header .language-select-wrap {
+  margin-left: 8px;
+}
+
+@media (max-width: 860px) {
+  .language-select {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+  header .language-select-wrap {
+    margin-left: 4px;
+  }
+  .language-menu {
+    min-width: 110px;
+    right: -4px;
+  }
+}
