@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="static/pn-system.css">
-<script src="static/js/i18n.js" defer></script>
 <style>
   :root{
     --bg-0:#050505;
@@ -59,6 +57,7 @@
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
   .reveal.in{opacity:1;transform:translateY(0);}
 
+  /* ---------- NAV ---------- */
   header{
     position:sticky;top:0;z-index:100;
     background:rgba(5,5,5,0.72);
@@ -81,6 +80,12 @@
     transition:border-color .25s ease,background .25s ease;
   }
   .nav-cta:hover{border-color:var(--ink);background:rgba(245,244,241,0.04);}
+  .lang-switch{display:flex;gap:2px;font-family:var(--mono);font-size:11px;letter-spacing:0.04em;}
+  .lang-switch button{background:none;border:1px solid transparent;color:var(--ink-faint);padding:6px 9px;border-radius:2px;cursor:pointer;transition:color .2s ease,border-color .2s ease,background .2s ease;}
+  .lang-switch button:hover{color:var(--ink-dim);}
+  .lang-switch button.active{color:var(--ink);border-color:var(--line-strong);background:rgba(245,244,241,0.04);}
+  .mobile-menu .lang-switch{padding:16px 32px;gap:8px;border-bottom:1px solid var(--line);}
+  .mobile-menu .lang-switch button{padding:8px 12px;border:1px solid var(--line-strong);}
   .burger{display:none;width:22px;height:16px;position:relative;cursor:pointer;background:none;border:0;}
   .burger span{position:absolute;left:0;width:100%;height:1px;background:var(--ink);transition:all .3s ease;}
   .burger span:nth-child(1){top:0;} .burger span:nth-child(2){top:7px;} .burger span:nth-child(3){top:14px;}
@@ -88,6 +93,7 @@
   .mobile-menu a{padding:18px 32px;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-dim);}
   .mobile-menu.open{display:flex;}
 
+  /* ---------- HERO ---------- */
   .hero{
     padding:150px 0 110px;
     position:relative;
@@ -95,20 +101,32 @@
     border-bottom:1px solid var(--line);
   }
   .hero .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:28px;}
-  .hero h1{font-size:clamp(38px,6.2vw,74px);line-height:1.04;max-width:820px;}
+  .hero h1{
+    font-size:clamp(38px,6.2vw,74px);
+    line-height:1.04;
+    max-width:820px;
+  }
   .hero h1 em{font-style:normal;color:var(--ink-dim);}
   .hero p{font-size:17px;color:var(--ink-dim);max-width:480px;}
-  .hero-products{font-family:var(--mono);font-size:13px;letter-spacing:0.1em;color:var(--ink-faint);display:flex;gap:14px;text-transform:uppercase;margin-top:6px;}
+  .hero-products{
+    font-family:var(--mono);font-size:13px;letter-spacing:0.1em;color:var(--ink-faint);
+    display:flex;gap:14px;text-transform:uppercase;margin-top:6px;
+  }
   .hero-products span:not(.dot){color:var(--ink-dim);}
   .hero-cta{display:flex;gap:16px;margin-top:12px;align-items:center;}
-  .btn-primary{background:var(--ink);color:#080808;font-family:var(--mono);font-size:13px;letter-spacing:0.05em;padding:13px 26px;border-radius:2px;transition:opacity .25s ease;}
+  .btn-primary{
+    background:var(--ink);color:#080808;font-family:var(--mono);font-size:13px;
+    letter-spacing:0.05em;padding:13px 26px;border-radius:2px;transition:opacity .25s ease;
+  }
   .btn-primary:hover{opacity:0.82;}
   .btn-ghost{font-family:var(--mono);font-size:13px;color:var(--ink-dim);border-bottom:1px solid var(--ink-faint);padding-bottom:2px;transition:color .25s ease,border-color .25s ease;}
   .btn-ghost:hover{color:var(--ink);border-color:var(--ink);}
 
+  /* orbital signature */
   .orbit-wrap{width:100%;display:flex;justify-content:center;margin-top:40px;}
   .orbit-wrap svg{width:100%;max-width:640px;height:auto;}
   .orbit-ring{fill:none;stroke:var(--line-strong);stroke-width:1;}
+  .orbit-node{filter:none;}
   .orbit-core{fill:var(--ink);}
   .spin-slow{animation:spin 46s linear infinite;transform-origin:320px 190px;}
   .spin-slow-rev{animation:spin 60s linear infinite reverse;transform-origin:320px 190px;}
@@ -116,12 +134,14 @@
   @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
   @media (prefers-reduced-motion:reduce){.spin-slow,.spin-slow-rev,.spin-slower{animation:none;}}
 
+  /* ---------- SECTION GENERIC ---------- */
   section{padding:120px 0;border-bottom:1px solid var(--line);}
   section.alt{background:var(--bg-1);}
   .section-head{max-width:640px;margin-bottom:64px;}
   .section-head h2{font-size:clamp(28px,3.4vw,42px);margin-top:14px;}
   .section-head p{color:var(--ink-dim);margin-top:16px;font-size:16px;max-width:520px;}
 
+  /* ---------- PRODUCTS OVERVIEW ---------- */
   .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
   .product-tile{background:var(--bg-0);padding:36px 30px;transition:background .3s ease;position:relative;}
   .product-tile:hover{background:var(--bg-2);}
@@ -132,43 +152,55 @@
   .product-tile p{color:var(--ink-dim);font-size:14.5px;margin-bottom:22px;}
   .product-tile a{font-family:var(--mono);font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--ink-faint);padding-bottom:2px;}
 
+  /* ---------- SHOWCASE (alternating) ---------- */
   .showcase{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
   .showcase.reverse .showcase-copy{order:2;}
   .showcase.reverse .showcase-visual{order:1;}
   .showcase-copy .cat{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;display:inline-block;}
   .showcase-copy h3{font-size:clamp(30px,4vw,48px);margin-bottom:18px;}
   .showcase-copy p{color:var(--ink-dim);font-size:16px;max-width:440px;margin-bottom:28px;}
-  .showcase-visual{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg-2);aspect-ratio:4/3;position:relative;}
+  .showcase-visual{
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;
+    background:var(--bg-2);aspect-ratio:4/3;position:relative;
+  }
   .mock-ui{position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;gap:12px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);}
   .mock-topbar{display:flex;gap:6px;margin-bottom:6px;}
   .mock-dot{width:8px;height:8px;border-radius:50%;background:var(--line-strong);}
   .mock-row{height:34px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;padding:0 12px;background:var(--bg-1);}
   .mock-bar{height:6px;border-radius:3px;background:var(--line-strong);}
 
+  + section.alt + section:not(.alt) {}
+
+  /* ---------- PHILOSOPHY ---------- */
   .philosophy{text-align:left;max-width:760px;}
   .philosophy h2{font-size:clamp(30px,4.4vw,52px);line-height:1.18;margin-bottom:26px;}
   .philosophy p{color:var(--ink-dim);font-size:17px;max-width:560px;}
 
+  /* ---------- TECH ---------- */
   .tech-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
   .tech-item{background:var(--bg-0);padding:28px 26px;}
   .tech-item .n{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:10px;}
   .tech-item h4{font-size:17px;font-weight:500;margin-bottom:8px;font-family:var(--display);}
   .tech-item p{font-size:13.5px;color:var(--ink-dim);}
 
+  /* ---------- ECOSYSTEM ---------- */
   .ecosystem{text-align:center;}
   .ecosystem .section-head{margin:0 auto 40px;text-align:center;}
   .eco-visual{display:flex;justify-content:center;}
   .eco-visual svg{width:100%;max-width:560px;height:auto;}
   .eco-caption{font-family:var(--mono);font-size:13px;color:var(--ink-dim);margin-top:28px;letter-spacing:0.03em;}
 
+  /* ---------- COMPANY ---------- */
   .company-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
   .company-grid p{color:var(--ink-dim);font-size:16px;margin-bottom:18px;max-width:480px;}
 
+  /* ---------- CONTACT ---------- */
   .contact{text-align:left;}
   .contact h2{font-size:clamp(34px,5.4vw,64px);line-height:1.06;max-width:760px;}
   .contact p{color:var(--ink-dim);margin-top:20px;font-size:17px;max-width:460px;}
   .contact .hero-cta{margin-top:36px;}
 
+  /* ---------- FOOTER ---------- */
   footer{padding:70px 0 40px;}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px;}
   .foot-col .logo{margin-bottom:14px;}
@@ -204,45 +236,42 @@
       <a href="#news" data-i18n="nav.news">News</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
     </div>
-    <a href="#products" class="nav-cta" data-i18n="nav.view_products">View Products</a>
-
-    <!-- Language Switcher -->
-    <div class="language-select-wrap">
-      <button type="button" class="language-select" id="languageSelect" aria-haspopup="listbox" aria-expanded="false">
-        <span id="currentLanguage">JP / 日本語</span>
-        <span class="language-arrow">⌄</span>
-      </button>
-      <div class="language-menu" id="languageMenu" role="listbox" aria-label="Language">
-        <button type="button" class="language-option active" data-lang="ja"><span>JP</span><span>日本語</span></button>
-        <button type="button" class="language-option" data-lang="en"><span>EN</span><span>English</span></button>
-        <button type="button" class="language-option" data-lang="ko"><span>KO</span><span>한국어</span></button>
-        <button type="button" class="language-option" data-lang="zh"><span>ZH</span><span>中文</span></button>
-      </div>
+    <div class="lang-switch">
+      <button data-lang="ja">日本語</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="ko">한국어</button>
+      <button data-lang="zh">中文</button>
     </div>
-
+    <a href="#products" class="nav-cta" data-i18n="nav.viewProducts">View Products</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#products" data-i18n="mobile_menu.products">Products</a>
-    <a href="#company" data-i18n="mobile_menu.company">Company</a>
-    <a href="#technology" data-i18n="mobile_menu.technology">Technology</a>
-    <a href="#news" data-i18n="mobile_menu.news">News</a>
-    <a href="#contact" data-i18n="mobile_menu.contact">Contact</a>
+    <div class="lang-switch">
+      <button data-lang="ja">日本語</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="ko">한국어</button>
+      <button data-lang="zh">中文</button>
+    </div>
+    <a href="#products" data-i18n="nav.products">Products</a>
+    <a href="#company" data-i18n="nav.company">Company</a>
+    <a href="#technology" data-i18n="nav.technology">Technology</a>
+    <a href="#news" data-i18n="nav.news">News</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
   </div>
 </header>
 
 <!-- 01 HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="index.hero_eyebrow">Independent Technology Company</div>
-    <h1 class="reveal" data-i18n-html="index.hero_title">We build products for the way the world moves.<br><em>Not one product. A company that makes them.</em></h1>
-    <p class="reveal" data-i18n="index.hero_desc">Parasite Notify designs, builds, and operates independent products across commerce, automotive intelligence, and software creation.</p>
-    <div class="hero-products reveal" data-i18n="index.hero_products">
+    <div class="eyebrow" data-i18n="home.eyebrow">Independent Technology Company</div>
+    <h1 class="reveal"><span data-i18n="home.heroTitle1">We build products for the way the world moves.</span><br><em data-i18n="home.heroTitle2">Not one product. A company that makes them.</em></h1>
+    <p class="reveal" data-i18n="home.heroDesc">Parasite Notify designs, builds, and operates independent products across commerce, automotive intelligence, and software creation.</p>
+    <div class="hero-products reveal">
       <span>HACO</span><span class="dot">·</span><span>KALINA</span><span class="dot">·</span><span>FARO</span>
     </div>
     <div class="hero-cta reveal">
-      <a href="#products" class="btn-primary" data-i18n="index.hero_cta">Explore Products</a>
-      <a href="#company" class="btn-ghost" data-i18n="index.hero_cta_ghost">About the company</a>
+      <a href="#products" class="btn-primary" data-i18n="home.exploreProducts">Explore Products</a>
+      <a href="#company" class="btn-ghost" data-i18n="home.aboutCompany">About the company</a>
     </div>
     <div class="orbit-wrap reveal">
       <svg viewBox="0 0 640 380">
@@ -262,31 +291,31 @@
 <section id="products">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="index.products_eyebrow">Products</div>
-      <h2 data-i18n="index.products_title">Three products. One company.</h2>
-      <p data-i18n="index.products_desc">Each product is built for a different problem, with its own team, design language, and roadmap — unified by how Parasite Notify approaches building things.</p>
+      <div class="eyebrow" data-i18n="nav.products">Products</div>
+      <h2 data-i18n="home.productsTitle">Three products. One company.</h2>
+      <p data-i18n="home.productsDesc">Each product is built for a different problem, with its own team, design language, and roadmap — unified by how Parasite Notify approaches building things.</p>
     </div>
     <div class="product-grid reveal">
       <div class="product-tile">
         <div class="dot haco-dot"></div>
-        <h3 data-i18n="index.haco_name">HACO</h3>
-        <div class="cat" data-i18n="index.haco_cat">Cross-border Commerce</div>
-        <p data-i18n="index.haco_desc">Buy from Chinese marketplaces and get it shipped home, without the language and logistics friction.</p>
-        <a href="haco.html" data-i18n="index.haco_cta">Explore HACO →</a>
+        <h3>HACO</h3>
+        <div class="cat" data-i18n="home.hacoCat">Cross-border Commerce</div>
+        <p data-i18n="home.hacoTileDesc">Buy from Chinese marketplaces and get it shipped home, without the language and logistics friction.</p>
+        <a href="haco.html" data-i18n="home.hacoExplore">Explore HACO →</a>
       </div>
       <div class="product-tile">
         <div class="dot kalina-dot"></div>
-        <h3 data-i18n="index.kalina_name">KALINA</h3>
-        <div class="cat" data-i18n="index.kalina_cat">Automotive Intelligence</div>
-        <p data-i18n="index.kalina_desc">Data and analysis for people deciding whether a used car is actually worth buying.</p>
-        <a href="kalina.html" data-i18n="index.kalina_cta">Explore KALINA →</a>
+        <h3>KALINA</h3>
+        <div class="cat" data-i18n="home.kalinaCat">Automotive Intelligence</div>
+        <p data-i18n="home.kalinaTileDesc">Data and analysis for people deciding whether a used car is actually worth buying.</p>
+        <a href="kalina.html" data-i18n="home.kalinaExplore">Explore KALINA →</a>
       </div>
       <div class="product-tile">
         <div class="dot faro-dot"></div>
-        <h3 data-i18n="index.faro_name">FARO</h3>
-        <div class="cat" data-i18n="index.faro_cat">AI Software Creation</div>
-        <p data-i18n="index.faro_desc">Turn an idea into working software, with AI handling the build so you can focus on the idea.</p>
-        <a href="faro.html" data-i18n="index.faro_cta">Explore FARO →</a>
+        <h3>FARO</h3>
+        <div class="cat" data-i18n="home.faroCat">AI Software Creation</div>
+        <p data-i18n="home.faroTileDesc">Turn an idea into working software, with AI handling the build so you can focus on the idea.</p>
+        <a href="faro.html" data-i18n="home.faroExplore">Explore FARO →</a>
       </div>
     </div>
   </div>
@@ -297,10 +326,10 @@
   <div class="wrap">
     <div class="showcase">
       <div class="showcase-copy reveal">
-        <span class="cat" style="color:var(--haco)" data-i18n="index.haco_showcase_eyebrow">HACO — Cross-border Commerce</span>
-        <h3 data-i18n="index.haco_showcase_title">China shopping, simplified.</h3>
-        <p data-i18n="index.haco_showcase_desc">Send HACO a product link from any Chinese marketplace. It handles the order, the customs paperwork, and the shipping — and keeps you updated the whole way.</p>
-        <a href="haco.html" class="btn-ghost" data-i18n="index.haco_showcase_cta">Explore HACO →</a>
+        <span class="cat" style="color:var(--haco)" data-i18n="home.hacoShowcaseLabel">HACO — Cross-border Commerce</span>
+        <h3 data-i18n="home.hacoShowcaseTitle">China shopping, simplified.</h3>
+        <p data-i18n="home.hacoShowcaseDesc">Send HACO a product link from any Chinese marketplace. It handles the order, the customs paperwork, and the shipping — and keeps you updated the whole way.</p>
+        <a href="haco.html" class="btn-ghost" data-i18n="home.hacoExplore">Explore HACO →</a>
       </div>
       <div class="showcase-visual reveal">
         <div class="mock-ui">
@@ -321,10 +350,10 @@
   <div class="wrap">
     <div class="showcase reverse">
       <div class="showcase-copy reveal">
-        <span class="cat" style="color:var(--kalina)" data-i18n="index.kalina_showcase_eyebrow">KALINA — Automotive Intelligence</span>
-        <h3 data-i18n="index.kalina_showcase_title">Intelligence for better car decisions.</h3>
-        <p data-i18n="index.kalina_showcase_desc">KALINA reads market data, condition history, and pricing trends to tell you not just what a car is worth, but whether it's the right one to buy.</p>
-        <a href="kalina.html" class="btn-ghost" data-i18n="index.kalina_showcase_cta">Explore KALINA →</a>
+        <span class="cat" style="color:var(--kalina)" data-i18n="home.kalinaShowcaseLabel">KALINA — Automotive Intelligence</span>
+        <h3 data-i18n="home.kalinaShowcaseTitle">Intelligence for better car decisions.</h3>
+        <p data-i18n="home.kalinaShowcaseDesc">KALINA reads market data, condition history, and pricing trends to tell you not just what a car is worth, but whether it's the right one to buy.</p>
+        <a href="kalina.html" class="btn-ghost" data-i18n="home.kalinaExplore">Explore KALINA →</a>
       </div>
       <div class="showcase-visual reveal">
         <div class="mock-ui">
@@ -344,10 +373,10 @@
   <div class="wrap">
     <div class="showcase">
       <div class="showcase-copy reveal">
-        <span class="cat" style="color:var(--faro)" data-i18n="index.faro_showcase_eyebrow">FARO — AI Software Creation</span>
-        <h3 data-i18n="index.faro_showcase_title">From idea to software.</h3>
-        <p data-i18n="index.faro_showcase_desc">Describe what you want to build. FARO plans it, builds it, and lets you review and iterate — a real development process, not a chat window.</p>
-        <a href="faro.html" class="btn-ghost" data-i18n="index.faro_showcase_cta">Explore FARO →</a>
+        <span class="cat" style="color:var(--faro)" data-i18n="home.faroShowcaseLabel">FARO — AI Software Creation</span>
+        <h3 data-i18n="home.faroShowcaseTitle">From idea to software.</h3>
+        <p data-i18n="home.faroShowcaseDesc">Describe what you want to build. FARO plans it, builds it, and lets you review and iterate — a real development process, not a chat window.</p>
+        <a href="faro.html" class="btn-ghost" data-i18n="home.faroExplore">Explore FARO →</a>
       </div>
       <div class="showcase-visual reveal">
         <div class="mock-ui">
@@ -366,9 +395,9 @@
 <section>
   <div class="wrap">
     <div class="philosophy reveal">
-      <div class="eyebrow" data-i18n="index.philosophy_eyebrow">Philosophy</div>
-      <h2 data-i18n="index.philosophy_title">We build.</h2>
-      <p data-i18n="index.philosophy_desc">We don't build products to fit an existing category. We build the ones we think should exist, and we ship them ourselves — from the first line of code to the customer who uses it. Every product carries its own identity. What they share is how we make decisions: slowly on the things that matter, fast on everything else.</p>
+      <div class="eyebrow" data-i18n="home.philosophyEyebrow">Philosophy</div>
+      <h2 data-i18n="home.philosophyTitle">We build.</h2>
+      <p data-i18n="home.philosophyDesc">We don't build products to fit an existing category. We build the ones we think should exist, and we ship them ourselves — from the first line of code to the customer who uses it. Every product carries its own identity. What they share is how we make decisions: slowly on the things that matter, fast on everything else.</p>
     </div>
   </div>
 </section>
@@ -377,17 +406,17 @@
 <section id="technology" class="alt">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="index.tech_eyebrow">Technology</div>
-      <h2 data-i18n="index.tech_title">Technology behind the products.</h2>
-      <p data-i18n="index.tech_desc">Not a stack we're proud of for its own sake — the parts that make it possible to ship products like these.</p>
+      <div class="eyebrow" data-i18n="home.techEyebrow">Technology</div>
+      <h2 data-i18n="home.techTitle">Technology behind the products.</h2>
+      <p data-i18n="home.techDesc">Not a stack we're proud of for its own sake — the parts that make it possible to ship products like these.</p>
     </div>
     <div class="tech-list reveal">
-      <div class="tech-item"><div class="n">01</div><h4 data-i18n="index.tech_01">AI &amp; Machine Learning</h4><p data-i18n="index.tech_01_desc">Powers KALINA's scoring and FARO's build process.</p></div>
-      <div class="tech-item"><div class="n">02</div><h4 data-i18n="index.tech_02">Data</h4><p data-i18n="index.tech_02_desc">Market and pricing data pipelines that stay current.</p></div>
-      <div class="tech-item"><div class="n">03</div><h4 data-i18n="index.tech_03">Cloud Infrastructure</h4><p data-i18n="index.tech_03_desc">Scales each product independently, on its own load.</p></div>
-      <div class="tech-item"><div class="n">04</div><h4 data-i18n="index.tech_04">Automation</h4><p data-i18n="index.tech_04_desc">Removes manual steps from order and build workflows.</p></div>
-      <div class="tech-item"><div class="n">05</div><h4 data-i18n="index.tech_05">Software Engineering</h4><p data-i18n="index.tech_05_desc">Small teams, direct ownership, fast iteration.</p></div>
-      <div class="tech-item"><div class="n">06</div><h4 data-i18n="index.tech_06">Security</h4><p data-i18n="index.tech_06_desc">Customer and payment data handled with care by design.</p></div>
+      <div class="tech-item"><div class="n">01</div><h4 data-i18n="home.tech1Title">AI &amp; Machine Learning</h4><p data-i18n="home.tech1Desc">Powers KALINA's scoring and FARO's build process.</p></div>
+      <div class="tech-item"><div class="n">02</div><h4 data-i18n="home.tech2Title">Data</h4><p data-i18n="home.tech2Desc">Market and pricing data pipelines that stay current.</p></div>
+      <div class="tech-item"><div class="n">03</div><h4 data-i18n="home.tech3Title">Cloud Infrastructure</h4><p data-i18n="home.tech3Desc">Scales each product independently, on its own load.</p></div>
+      <div class="tech-item"><div class="n">04</div><h4 data-i18n="home.tech4Title">Automation</h4><p data-i18n="home.tech4Desc">Removes manual steps from order and build workflows.</p></div>
+      <div class="tech-item"><div class="n">05</div><h4 data-i18n="home.tech5Title">Software Engineering</h4><p data-i18n="home.tech5Desc">Small teams, direct ownership, fast iteration.</p></div>
+      <div class="tech-item"><div class="n">06</div><h4 data-i18n="home.tech6Title">Security</h4><p data-i18n="home.tech6Desc">Customer and payment data handled with care by design.</p></div>
     </div>
   </div>
 </section>
@@ -396,8 +425,8 @@
 <section class="ecosystem">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="index.ecosystem_eyebrow">Ecosystem</div>
-      <h2 data-i18n="index.ecosystem_title">One company. Multiple products.</h2>
+      <div class="eyebrow" data-i18n="home.ecosystemEyebrow">Ecosystem</div>
+      <h2 data-i18n="home.ecosystemTitle">One company. Multiple products.</h2>
     </div>
     <div class="eco-visual reveal">
       <svg viewBox="0 0 560 340">
@@ -413,7 +442,7 @@
         <text x="440" y="285" text-anchor="middle" fill="var(--ink-dim)" font-family="JetBrains Mono" font-size="12">FARO</text>
       </svg>
     </div>
-    <div class="eco-caption reveal" data-i18n="index.ecosystem_caption">PARASITE NOTIFY — parent to every product above</div>
+    <div class="eco-caption reveal" data-i18n="home.ecosystemCaption">PARASITE NOTIFY — parent to every product above</div>
   </div>
 </section>
 
@@ -421,16 +450,16 @@
 <section id="company" class="alt">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="index.company_eyebrow">Company</div>
-      <h2 data-i18n="index.company_title">About Parasite Notify</h2>
+      <div class="eyebrow" data-i18n="home.companyEyebrow">Company</div>
+      <h2 data-i18n="home.companyTitle">About Parasite Notify</h2>
     </div>
     <div class="company-grid reveal">
       <div>
-        <p data-i18n="index.company_desc_1">Parasite Notify is a technology company that designs and operates its own products, rather than building for other companies. We start with a problem we think is worth solving properly, and we stay with it — from the first prototype through years of iteration.</p>
-        <p data-i18n="index.company_desc_2">We're early. Our products are still growing, and we'd rather say that plainly than pretend otherwise.</p>
+        <p data-i18n="home.companyP1">Parasite Notify is a technology company that designs and operates its own products, rather than building for other companies. We start with a problem we think is worth solving properly, and we stay with it — from the first prototype through years of iteration.</p>
+        <p data-i18n="home.companyP2">We're early. Our products are still growing, and we'd rather say that plainly than pretend otherwise.</p>
       </div>
       <div>
-        <p data-i18n="index.company_desc_3">We work in small, focused teams that own their product end to end. Decisions about direction move slowly and carefully; decisions about implementation move fast. We'd rather ship something small and real than something large and imaginary.</p>
+        <p data-i18n="home.companyP3">We work in small, focused teams that own their product end to end. Decisions about direction move slowly and carefully; decisions about implementation move fast. We'd rather ship something small and real than something large and imaginary.</p>
       </div>
     </div>
   </div>
@@ -439,11 +468,11 @@
 <!-- 12 CONTACT -->
 <section id="contact" class="alt contact">
   <div class="wrap">
-    <div class="eyebrow reveal" data-i18n="index.contact_eyebrow">Contact</div>
-    <h2 class="reveal" data-i18n-html="index.contact_title">Have an idea?<br>Let's build something.</h2>
-    <p class="reveal" data-i18n="index.contact_desc">Reach out about a product, a partnership, or working with us.</p>
+    <div class="eyebrow reveal" data-i18n="home.contactEyebrow">Contact</div>
+    <h2 class="reveal" data-i18n-html="home.contactTitle">Have an idea?<br>Let's build something.</h2>
+    <p class="reveal" data-i18n="home.contactDesc">Reach out about a product, a partnership, or working with us.</p>
     <div class="hero-cta reveal">
-      <a href="mailto:hello@parasite-notify.com" class="btn-primary" data-i18n="common.contact">hello@parasite-notify.com</a>
+      <a href="mailto:hello@parasite-notify.com" class="btn-primary">hello@parasite-notify.com</a>
     </div>
   </div>
 </section>
@@ -454,34 +483,35 @@
     <div class="foot-grid">
       <div class="foot-col">
         <div class="logo"><img src="full-logo.png" alt="Parasite Notify"></div>
-        <p data-i18n="index.footer">An independent technology company building HACO, KALINA, and FARO.</p>
+        <p data-i18n="footer.tagline">An independent technology company building HACO, KALINA, and FARO.</p>
       </div>
       <div class="foot-col">
-        <h5 data-i18n="index.footer_products">Products</h5>
-        <a href="haco.html" data-i18n="common.haco">HACO</a>
-        <a href="kalina.html" data-i18n="common.kalina">KALINA</a>
-        <a href="faro.html" data-i18n="common.faro">FARO</a>
+        <h5 data-i18n="footer.productsHeading">Products</h5>
+        <a href="#haco">HACO</a>
+        <a href="#kalina">KALINA</a>
+        <a href="#faro">FARO</a>
       </div>
       <div class="foot-col">
-        <h5 data-i18n="index.footer_company">Company</h5>
-        <a href="#company" data-i18n="index.footer_about">About</a>
-        <a href="#technology" data-i18n="index.footer_tech">Technology</a>
-        <a href="#news" data-i18n="index.footer_news">News</a>
+        <h5 data-i18n="footer.companyHeading">Company</h5>
+        <a href="#company" data-i18n="footer.about">About</a>
+        <a href="#technology" data-i18n="footer.technology">Technology</a>
+        <a href="#news" data-i18n="footer.news">News</a>
       </div>
       <div class="foot-col">
-        <h5 data-i18n="index.footer_legal">Legal</h5>
-        <a href="#" data-i18n="index.footer_privacy">Privacy Policy</a>
-        <a href="#" data-i18n="index.footer_terms">Terms</a>
-        <a href="#contact" data-i18n="index.footer_contact">Contact</a>
+        <h5 data-i18n="footer.legalHeading">Legal</h5>
+        <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="#" data-i18n="footer.terms">Terms</a>
+        <a href="#contact" data-i18n="footer.contact">Contact</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span data-i18n="index.footer_copyright">© 2026 Parasite Notify Corporation</span>
-      <span data-i18n="index.footer_news_label">News — coming soon</span>
+      <span>© 2026 Parasite Notify Corporation</span>
+      <span id="news-anchor" data-i18n="footer.newsComingSoon">News — coming soon</span>
     </div>
   </div>
 </footer>
 
+<script src="i18n.js"></script>
 <script>
   const burger = document.getElementById('burger');
   const menu = document.getElementById('mobileMenu');

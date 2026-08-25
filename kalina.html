@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="pn-system.css">
-<script src="js/i18n.js" defer></script>
 <style>
   :root{ --accent:var(--kalina); }
   .hero{padding:120px 0 90px;background:radial-gradient(ellipse 900px 460px at 50% -10%, rgba(226,100,59,0.09), transparent 60%);border-bottom:1px solid var(--line);}
@@ -52,41 +51,38 @@
       <a href="index.html#news" data-i18n="nav.news">News</a>
       <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
     </div>
-    <a href="index.html#products" class="nav-cta" data-i18n="nav.view_products">View Products</a>
-
-    <!-- Language Switcher -->
-    <div class="language-select-wrap">
-      <button type="button" class="language-select" id="languageSelect" aria-haspopup="listbox" aria-expanded="false">
-        <span id="currentLanguage">JP / 日本語</span>
-        <span class="language-arrow">⌄</span>
-      </button>
-      <div class="language-menu" id="languageMenu" role="listbox" aria-label="Language">
-        <button type="button" class="language-option active" data-lang="ja"><span>JP</span><span>日本語</span></button>
-        <button type="button" class="language-option" data-lang="en"><span>EN</span><span>English</span></button>
-        <button type="button" class="language-option" data-lang="ko"><span>KO</span><span>한국어</span></button>
-        <button type="button" class="language-option" data-lang="zh"><span>ZH</span><span>中文</span></button>
-      </div>
+    <div class="lang-switch">
+      <button data-lang="ja">日本語</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="ko">한국어</button>
+      <button data-lang="zh">中文</button>
     </div>
-
+    <a href="index.html#products" class="nav-cta" data-i18n="nav.viewProducts">View Products</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#products" data-i18n="mobile_menu.products">Products</a>
-    <a href="index.html#company" data-i18n="mobile_menu.company">Company</a>
-    <a href="index.html#technology" data-i18n="mobile_menu.technology">Technology</a>
-    <a href="index.html#news" data-i18n="mobile_menu.news">News</a>
-    <a href="index.html#contact" data-i18n="mobile_menu.contact">Contact</a>
+    <div class="lang-switch">
+      <button data-lang="ja">日本語</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="ko">한국어</button>
+      <button data-lang="zh">中文</button>
+    </div>
+    <a href="index.html#products" data-i18n="nav.products">Products</a>
+    <a href="index.html#company" data-i18n="nav.company">Company</a>
+    <a href="index.html#technology" data-i18n="nav.technology">Technology</a>
+    <a href="index.html#news" data-i18n="nav.news">News</a>
+    <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow hero-cat" data-i18n="kalina.hero_eyebrow">Automotive Intelligence</div>
-    <h1 class="reveal" data-i18n="kalina.hero_title">Intelligence for better car decisions.</h1>
-    <p class="reveal" data-i18n="kalina.hero_desc">KALINA reads pricing, condition, and market data to tell you whether a used car is actually worth buying — not just what it costs.</p>
+    <div class="eyebrow hero-cat" data-i18n="kalina.cat">Automotive Intelligence</div>
+    <h1 class="reveal" data-i18n="kalina.title">Intelligence for better car decisions.</h1>
+    <p class="reveal" data-i18n="kalina.desc">KALINA reads pricing, condition, and market data to tell you whether a used car is actually worth buying — not just what it costs.</p>
     <div class="reveal" style="display:flex;gap:16px;">
-      <a href="#" class="btn-accent" data-i18n="kalina.hero_cta">Check a listing</a>
-      <a href="#how" class="btn-ghost" data-i18n="kalina.hero_cta_ghost">How KALINA works</a>
+      <a href="#" class="btn-accent" data-i18n="kalina.ctaCheck">Check a listing</a>
+      <a href="#how" class="btn-ghost" data-i18n="kalina.ctaHow">How KALINA works</a>
     </div>
     <div class="visual hero-visual reveal">
       <div class="score-visual">
@@ -104,12 +100,12 @@
 <section>
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="kalina.problem_eyebrow">The problem</div>
-      <h2 data-i18n="kalina.problem_title">Used car listings all look the same.</h2>
+      <div class="eyebrow" data-i18n="kalina.problemEyebrow">The problem</div>
+      <h2 data-i18n="kalina.problemTitle">Used car listings all look the same.</h2>
     </div>
     <div class="problem-block reveal">
-      <div class="col"><h4 data-i18n="kalina.problem_col_1_title">What you see</h4><p data-i18n="kalina.problem_col_1_desc">A price, a photo set, and a mileage number — no sense of whether that price is fair or that car is reliable.</p></div>
-      <div class="col"><h4 data-i18n="kalina.problem_col_2_title">What you need</h4><p data-i18n="kalina.problem_col_2_desc">Comparable market pricing, condition signals, and a straight answer on whether this specific car is worth the ask.</p></div>
+      <div class="col"><h4 data-i18n="kalina.col1Title">What you see</h4><p data-i18n="kalina.col1Desc">A price, a photo set, and a mileage number — no sense of whether that price is fair or that car is reliable.</p></div>
+      <div class="col"><h4 data-i18n="kalina.col2Title">What you need</h4><p data-i18n="kalina.col2Desc">Comparable market pricing, condition signals, and a straight answer on whether this specific car is worth the ask.</p></div>
     </div>
   </div>
 </section>
@@ -117,14 +113,14 @@
 <section id="how" class="alt">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="kalina.how_eyebrow">How KALINA works</div>
-      <h2 data-i18n="kalina.how_title">Data in, a decision out.</h2>
-      <p data-i18n="kalina.how_desc">KALINA combines three signals into one score, so the analysis is visible, not a black box.</p>
+      <div class="eyebrow" data-i18n="kalina.howEyebrow">How KALINA works</div>
+      <h2 data-i18n="kalina.howTitle">Data in, a decision out.</h2>
+      <p data-i18n="kalina.howDesc">KALINA combines three signals into one score, so the analysis is visible, not a black box.</p>
     </div>
     <div class="factor-list reveal">
-      <div class="factor"><div class="n" data-i18n="kalina.factor_01_title">Market data</div><h4 data-i18n="kalina.factor_01_title">Comparable pricing</h4><p data-i18n="kalina.factor_01_desc">Thousands of similar listings, tracked over time, set the fair-price range.</p></div>
-      <div class="factor"><div class="n" data-i18n="kalina.factor_02_title">AI analysis</div><h4 data-i18n="kalina.factor_02_title">Condition &amp; history</h4><p data-i18n="kalina.factor_02_desc">Photos, listing text, and history reports are read for risk signals.</p></div>
-      <div class="factor"><div class="n" data-i18n="kalina.factor_03_title">Kalina Score</div><h4 data-i18n="kalina.factor_03_title">One number</h4><p data-i18n="kalina.factor_03_desc">Price, condition, and market position combined into a single 0–10 score.</p></div>
+      <div class="factor"><div class="n" data-i18n="kalina.factor1Label">Market data</div><h4 data-i18n="kalina.factor1Title">Comparable pricing</h4><p data-i18n="kalina.factor1Desc">Thousands of similar listings, tracked over time, set the fair-price range.</p></div>
+      <div class="factor"><div class="n" data-i18n="kalina.factor2Label">AI analysis</div><h4 data-i18n="kalina.factor2Title">Condition &amp; history</h4><p data-i18n="kalina.factor2Desc">Photos, listing text, and history reports are read for risk signals.</p></div>
+      <div class="factor"><div class="n" data-i18n="kalina.factor3Label">Kalina Score</div><h4 data-i18n="kalina.factor3Title">One number</h4><p data-i18n="kalina.factor3Desc">Price, condition, and market position combined into a single 0–10 score.</p></div>
     </div>
   </div>
 </section>
@@ -132,34 +128,35 @@
 <section>
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="kalina.pref_eyebrow">User preferences</div>
-      <h2 data-i18n="kalina.pref_title">Weighted to what matters to you.</h2>
-      <p data-i18n="kalina.pref_desc">Prioritizing reliability over price, or willing to trade condition for a deal — KALINA's decision support adjusts to the trade-offs you actually care about, not a generic average.</p>
+      <div class="eyebrow" data-i18n="kalina.prefEyebrow">User preferences</div>
+      <h2 data-i18n="kalina.prefTitle">Weighted to what matters to you.</h2>
+      <p data-i18n="kalina.prefDesc">Prioritizing reliability over price, or willing to trade condition for a deal — KALINA's decision support adjusts to the trade-offs you actually care about, not a generic average.</p>
     </div>
   </div>
 </section>
 
 <section class="alt cta-final">
   <div class="wrap">
-    <div class="eyebrow reveal" style="color:var(--kalina)" data-i18n="kalina.cta_eyebrow">Get started</div>
-    <h2 class="reveal" data-i18n="kalina.cta_title">Paste a listing, get a score.</h2>
-    <p class="reveal" data-i18n="kalina.cta_desc">See the fair price range and Kalina Score before you commit to a viewing.</p>
-    <div class="reveal" style="margin-top:28px;"><a href="#" class="btn-accent" data-i18n="kalina.cta_button">Check a listing</a></div>
+    <div class="eyebrow reveal" style="color:var(--kalina)" data-i18n="kalina.ctaEyebrow">Get started</div>
+    <h2 class="reveal" data-i18n="kalina.ctaTitle">Paste a listing, get a score.</h2>
+    <p class="reveal" data-i18n="kalina.ctaDesc">See the fair price range and Kalina Score before you commit to a viewing.</p>
+    <div class="reveal" style="margin-top:28px;"><a href="#" class="btn-accent" data-i18n="kalina.ctaBtn">Check a listing</a></div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <div class="foot-col"><div class="logo"><img src="full-logo.png" alt="Parasite Notify"></div><p data-i18n="index.footer">An independent technology company building HACO, KALINA, and FARO.</p></div>
-      <div class="foot-col"><h5 data-i18n="index.footer_products">Products</h5><a href="haco.html" data-i18n="common.haco">HACO</a><a href="kalina.html" data-i18n="common.kalina">KALINA</a><a href="faro.html" data-i18n="common.faro">FARO</a></div>
-      <div class="foot-col"><h5 data-i18n="index.footer_company">Company</h5><a href="index.html#company" data-i18n="index.footer_about">About</a><a href="index.html#technology" data-i18n="index.footer_tech">Technology</a><a href="index.html#news" data-i18n="index.footer_news">News</a></div>
-      <div class="foot-col"><h5 data-i18n="index.footer_legal">Legal</h5><a href="#" data-i18n="index.footer_privacy">Privacy Policy</a><a href="#" data-i18n="index.footer_terms">Terms</a><a href="index.html#contact" data-i18n="index.footer_contact">Contact</a></div>
+      <div class="foot-col"><div class="logo"><img src="full-logo.png" alt="Parasite Notify"></div><p data-i18n="footer.tagline">An independent technology company building HACO, KALINA, and FARO.</p></div>
+      <div class="foot-col"><h5 data-i18n="footer.productsHeading">Products</h5><a href="haco.html">HACO</a><a href="kalina.html">KALINA</a><a href="faro.html">FARO</a></div>
+      <div class="foot-col"><h5 data-i18n="footer.companyHeading">Company</h5><a href="index.html#company" data-i18n="footer.about">About</a><a href="index.html#technology" data-i18n="footer.technology">Technology</a><a href="index.html#news" data-i18n="footer.news">News</a></div>
+      <div class="foot-col"><h5 data-i18n="footer.legalHeading">Legal</h5><a href="#" data-i18n="footer.privacy">Privacy Policy</a><a href="#" data-i18n="footer.terms">Terms</a><a href="index.html#contact" data-i18n="footer.contact">Contact</a></div>
     </div>
-    <div class="foot-bottom"><span data-i18n="index.footer_copyright">© 2026 Parasite Notify Corporation</span><span>kalina.parasite-notify.com</span></div>
+    <div class="foot-bottom"><span>© 2026 Parasite Notify Corporation</span><span>kalina.parasite-notify.com</span></div>
   </div>
 </footer>
 
+<script src="i18n.js"></script>
 <script src="pn-system.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="pn-system.css">
-<script src="js/i18n.js" defer></script>
 <style>
   :root{ --accent:var(--haco); }
   .hero{padding:120px 0 90px;background:radial-gradient(ellipse 900px 460px at 50% -10%, rgba(79,209,197,0.08), transparent 60%);border-bottom:1px solid var(--line);}
@@ -56,41 +55,38 @@
       <a href="index.html#news" data-i18n="nav.news">News</a>
       <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
     </div>
-    <a href="index.html#products" class="nav-cta" data-i18n="nav.view_products">View Products</a>
-
-    <!-- Language Switcher -->
-    <div class="language-select-wrap">
-      <button type="button" class="language-select" id="languageSelect" aria-haspopup="listbox" aria-expanded="false">
-        <span id="currentLanguage">JP / 日本語</span>
-        <span class="language-arrow">⌄</span>
-      </button>
-      <div class="language-menu" id="languageMenu" role="listbox" aria-label="Language">
-        <button type="button" class="language-option active" data-lang="ja"><span>JP</span><span>日本語</span></button>
-        <button type="button" class="language-option" data-lang="en"><span>EN</span><span>English</span></button>
-        <button type="button" class="language-option" data-lang="ko"><span>KO</span><span>한국어</span></button>
-        <button type="button" class="language-option" data-lang="zh"><span>ZH</span><span>中文</span></button>
-      </div>
+    <div class="lang-switch">
+      <button data-lang="ja">日本語</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="ko">한국어</button>
+      <button data-lang="zh">中文</button>
     </div>
-
+    <a href="index.html#products" class="nav-cta" data-i18n="nav.viewProducts">View Products</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#products" data-i18n="mobile_menu.products">Products</a>
-    <a href="index.html#company" data-i18n="mobile_menu.company">Company</a>
-    <a href="index.html#technology" data-i18n="mobile_menu.technology">Technology</a>
-    <a href="index.html#news" data-i18n="mobile_menu.news">News</a>
-    <a href="index.html#contact" data-i18n="mobile_menu.contact">Contact</a>
+    <div class="lang-switch">
+      <button data-lang="ja">日本語</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="ko">한국어</button>
+      <button data-lang="zh">中文</button>
+    </div>
+    <a href="index.html#products" data-i18n="nav.products">Products</a>
+    <a href="index.html#company" data-i18n="nav.company">Company</a>
+    <a href="index.html#technology" data-i18n="nav.technology">Technology</a>
+    <a href="index.html#news" data-i18n="nav.news">News</a>
+    <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow hero-cat" data-i18n="haco.hero_eyebrow">Cross-border Commerce</div>
-    <h1 class="reveal" data-i18n="haco.hero_title">China shopping, simplified.</h1>
-    <p class="reveal" data-i18n="haco.hero_desc">Send HACO a product link from any Chinese marketplace. We place the order, inspect it, clear customs, and ship it to your door.</p>
+    <div class="eyebrow hero-cat" data-i18n="haco.cat">Cross-border Commerce</div>
+    <h1 class="reveal" data-i18n="haco.title">China shopping, simplified.</h1>
+    <p class="reveal" data-i18n="haco.desc">Send HACO a product link from any Chinese marketplace. We place the order, inspect it, clear customs, and ship it to your door.</p>
     <div class="reveal" style="display:flex;gap:16px;">
-      <a href="#" class="btn-accent" data-i18n="haco.hero_cta">Start an order</a>
-      <a href="#how" class="btn-ghost" data-i18n="haco.hero_cta_ghost">How it works</a>
+      <a href="#" class="btn-accent" data-i18n="haco.ctaStart">Start an order</a>
+      <a href="#how" class="btn-ghost" data-i18n="haco.ctaHow">How it works</a>
     </div>
     <div class="visual hero-visual reveal">
       <div class="mock-ui">
@@ -106,9 +102,9 @@
 <section>
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="haco.what_eyebrow">What is HACO?</div>
-      <h2 data-i18n="haco.what_title">A buying agent that speaks the language you don't.</h2>
-      <p data-i18n="haco.what_desc">Chinese marketplaces have the products, not the access. HACO is the layer in between: it buys, inspects, consolidates, and ships — so you deal with one order, not five different systems.</p>
+      <div class="eyebrow" data-i18n="haco.whatEyebrow">What is HACO?</div>
+      <h2 data-i18n="haco.whatTitle">A buying agent that speaks the language you don't.</h2>
+      <p data-i18n="haco.whatDesc">Chinese marketplaces have the products, not the access. HACO is the layer in between: it buys, inspects, consolidates, and ships — so you deal with one order, not five different systems.</p>
     </div>
   </div>
 </section>
@@ -116,14 +112,14 @@
 <section id="how" class="alt">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="haco.how_eyebrow">How it works</div>
-      <h2 data-i18n="haco.how_title">Four steps, start to finish.</h2>
+      <div class="eyebrow" data-i18n="haco.howEyebrow">How it works</div>
+      <h2 data-i18n="haco.howTitle">Four steps, start to finish.</h2>
     </div>
     <div class="steps reveal">
-      <div class="step"><div class="n">01</div><h4 data-i18n="haco.step_01_title">Send the link</h4><p data-i18n="haco.step_01_desc">Paste any product URL from a supported marketplace.</p></div>
-      <div class="step"><div class="n">02</div><h4 data-i18n="haco.step_02_title">We buy it</h4><p data-i18n="haco.step_02_desc">HACO places the order and pays the seller directly.</p></div>
-      <div class="step"><div class="n">03</div><h4 data-i18n="haco.step_03_title">Inspection</h4><p data-i18n="haco.step_03_desc">Your item is checked before it leaves the warehouse.</p></div>
-      <div class="step"><div class="n">04</div><h4 data-i18n="haco.step_04_title">Delivered</h4><p data-i18n="haco.step_04_desc">Consolidated shipping to your address, with tracking.</p></div>
+      <div class="step"><div class="n">01</div><h4 data-i18n="haco.step1Title">Send the link</h4><p data-i18n="haco.step1Desc">Paste any product URL from a supported marketplace.</p></div>
+      <div class="step"><div class="n">02</div><h4 data-i18n="haco.step2Title">We buy it</h4><p data-i18n="haco.step2Desc">HACO places the order and pays the seller directly.</p></div>
+      <div class="step"><div class="n">03</div><h4 data-i18n="haco.step3Title">Inspection</h4><p data-i18n="haco.step3Desc">Your item is checked before it leaves the warehouse.</p></div>
+      <div class="step"><div class="n">04</div><h4 data-i18n="haco.step4Title">Delivered</h4><p data-i18n="haco.step4Desc">Consolidated shipping to your address, with tracking.</p></div>
     </div>
   </div>
 </section>
@@ -131,14 +127,14 @@
 <section>
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="haco.features_eyebrow">Features</div>
-      <h2 data-i18n="haco.features_title">Built around the parts that usually go wrong.</h2>
+      <div class="eyebrow" data-i18n="haco.featEyebrow">Features</div>
+      <h2 data-i18n="haco.featTitle">Built around the parts that usually go wrong.</h2>
     </div>
     <div class="feature-grid reveal">
-      <div class="feature"><h4 data-i18n="haco.feature_01_title">Photo inspection</h4><p data-i18n="haco.feature_01_desc">Every item is photographed before shipping so you know what you're getting.</p></div>
-      <div class="feature"><h4 data-i18n="haco.feature_02_title">Order consolidation</h4><p data-i18n="haco.feature_02_desc">Combine multiple purchases into a single shipment to cut cost.</p></div>
-      <div class="feature"><h4 data-i18n="haco.feature_03_title">Status updates</h4><p data-i18n="haco.feature_03_desc">Every order stage is reported directly, no need to check in.</p></div>
-      <div class="feature"><h4 data-i18n="haco.feature_04_title">No personal transfers</h4><p data-i18n="haco.feature_04_desc">Pay through the platform — never to a personal account.</p></div>
+      <div class="feature"><h4 data-i18n="haco.feat1Title">Photo inspection</h4><p data-i18n="haco.feat1Desc">Every item is photographed before shipping so you know what you're getting.</p></div>
+      <div class="feature"><h4 data-i18n="haco.feat2Title">Order consolidation</h4><p data-i18n="haco.feat2Desc">Combine multiple purchases into a single shipment to cut cost.</p></div>
+      <div class="feature"><h4 data-i18n="haco.feat3Title">Status updates</h4><p data-i18n="haco.feat3Desc">Every order stage is reported directly, no need to check in.</p></div>
+      <div class="feature"><h4 data-i18n="haco.feat4Title">No personal transfers</h4><p data-i18n="haco.feat4Desc">Pay through the platform — never to a personal account.</p></div>
     </div>
   </div>
 </section>
@@ -146,13 +142,13 @@
 <section class="alt">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="haco.pricing_eyebrow">Pricing</div>
-      <h2 data-i18n="haco.pricing_title">Simple, per-order pricing.</h2>
+      <div class="eyebrow" data-i18n="haco.pricingEyebrow">Pricing</div>
+      <h2 data-i18n="haco.pricingTitle">Simple, per-order pricing.</h2>
     </div>
     <div class="reveal">
-      <div class="pricing-row"><div><div class="t" data-i18n="haco.pricing_fee">Service fee</div><div class="d" data-i18n="haco.pricing_fee_desc">Per item purchased on your behalf</div></div><div class="p" data-i18n="haco.pricing_fee_amount">from ¥300</div></div>
-      <div class="pricing-row"><div><div class="t" data-i18n="haco.pricing_inspection">Inspection</div><div class="d" data-i18n="haco.pricing_inspection_desc">Photo check before shipment</div></div><div class="p" data-i18n="haco.pricing_inspection_amount">included</div></div>
-      <div class="pricing-row"><div><div class="t" data-i18n="haco.pricing_shipping">Shipping</div><div class="d" data-i18n="haco.pricing_shipping_desc">Calculated by weight and destination</div></div><div class="p" data-i18n="haco.pricing_shipping_amount">at checkout</div></div>
+      <div class="pricing-row"><div><div class="t" data-i18n="haco.price1Title">Service fee</div><div class="d" data-i18n="haco.price1Desc">Per item purchased on your behalf</div></div><div class="p" data-i18n="haco.price1Value">from ¥300</div></div>
+      <div class="pricing-row"><div><div class="t" data-i18n="haco.price2Title">Inspection</div><div class="d" data-i18n="haco.price2Desc">Photo check before shipment</div></div><div class="p" data-i18n="haco.price2Value">included</div></div>
+      <div class="pricing-row"><div><div class="t" data-i18n="haco.price3Title">Shipping</div><div class="d" data-i18n="haco.price3Desc">Calculated by weight and destination</div></div><div class="p" data-i18n="haco.price3Value">at checkout</div></div>
     </div>
   </div>
 </section>
@@ -160,38 +156,39 @@
 <section>
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow" data-i18n="haco.faq_eyebrow">FAQ</div>
-      <h2 data-i18n="haco.faq_title">Common questions.</h2>
+      <div class="eyebrow" data-i18n="haco.faqEyebrow">FAQ</div>
+      <h2 data-i18n="haco.faqTitle">Common questions.</h2>
     </div>
     <div class="reveal">
-      <div class="faq-item"><div class="q" data-i18n="haco.faq_01_q">What marketplaces does HACO support?</div><div class="a" data-i18n="haco.faq_01_a">The major Chinese marketplaces — full list shown at checkout.</div></div>
-      <div class="faq-item"><div class="q" data-i18n="haco.faq_02_q">How long does shipping take?</div><div class="a" data-i18n="haco.faq_02_a">Typically 7–14 days depending on destination and consolidation.</div></div>
-      <div class="faq-item"><div class="q" data-i18n="haco.faq_03_q">What if an item arrives damaged?</div><div class="a" data-i18n="haco.faq_03_a">Inspection photos are kept on file to support any claim.</div></div>
+      <div class="faq-item"><div class="q" data-i18n="haco.faq1Q">What marketplaces does HACO support?</div><div class="a" data-i18n="haco.faq1A">The major Chinese marketplaces — full list shown at checkout.</div></div>
+      <div class="faq-item"><div class="q" data-i18n="haco.faq2Q">How long does shipping take?</div><div class="a" data-i18n="haco.faq2A">Typically 7–14 days depending on destination and consolidation.</div></div>
+      <div class="faq-item"><div class="q" data-i18n="haco.faq3Q">What if an item arrives damaged?</div><div class="a" data-i18n="haco.faq3A">Inspection photos are kept on file to support any claim.</div></div>
     </div>
   </div>
 </section>
 
 <section class="alt cta-final">
   <div class="wrap">
-    <div class="eyebrow reveal" style="color:var(--haco)" data-i18n="haco.cta_eyebrow">Get started</div>
-    <h2 class="reveal" data-i18n="haco.cta_title">Send your first link.</h2>
-    <p class="reveal" data-i18n="haco.cta_desc">Create an account and place your first order in a few minutes.</p>
-    <div class="reveal" style="margin-top:28px;"><a href="#" class="btn-accent" data-i18n="haco.cta_button">Start an order</a></div>
+    <div class="eyebrow reveal" style="color:var(--haco)" data-i18n="haco.ctaEyebrow">Get started</div>
+    <h2 class="reveal" data-i18n="haco.ctaTitle">Send your first link.</h2>
+    <p class="reveal" data-i18n="haco.ctaDesc">Create an account and place your first order in a few minutes.</p>
+    <div class="reveal" style="margin-top:28px;"><a href="#" class="btn-accent" data-i18n="haco.ctaBtn">Start an order</a></div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <div class="foot-col"><div class="logo"><img src="full-logo.png" alt="Parasite Notify"></div><p data-i18n="index.footer">An independent technology company building HACO, KALINA, and FARO.</p></div>
-      <div class="foot-col"><h5 data-i18n="index.footer_products">Products</h5><a href="haco.html" data-i18n="common.haco">HACO</a><a href="kalina.html" data-i18n="common.kalina">KALINA</a><a href="faro.html" data-i18n="common.faro">FARO</a></div>
-      <div class="foot-col"><h5 data-i18n="index.footer_company">Company</h5><a href="index.html#company" data-i18n="index.footer_about">About</a><a href="index.html#technology" data-i18n="index.footer_tech">Technology</a><a href="index.html#news" data-i18n="index.footer_news">News</a></div>
-      <div class="foot-col"><h5 data-i18n="index.footer_legal">Legal</h5><a href="#" data-i18n="index.footer_privacy">Privacy Policy</a><a href="#" data-i18n="index.footer_terms">Terms</a><a href="index.html#contact" data-i18n="index.footer_contact">Contact</a></div>
+      <div class="foot-col"><div class="logo"><img src="full-logo.png" alt="Parasite Notify"></div><p data-i18n="footer.tagline">An independent technology company building HACO, KALINA, and FARO.</p></div>
+      <div class="foot-col"><h5 data-i18n="footer.productsHeading">Products</h5><a href="haco.html">HACO</a><a href="kalina.html">KALINA</a><a href="faro.html">FARO</a></div>
+      <div class="foot-col"><h5 data-i18n="footer.companyHeading">Company</h5><a href="index.html#company" data-i18n="footer.about">About</a><a href="index.html#technology" data-i18n="footer.technology">Technology</a><a href="index.html#news" data-i18n="footer.news">News</a></div>
+      <div class="foot-col"><h5 data-i18n="footer.legalHeading">Legal</h5><a href="#" data-i18n="footer.privacy">Privacy Policy</a><a href="#" data-i18n="footer.terms">Terms</a><a href="index.html#contact" data-i18n="footer.contact">Contact</a></div>
     </div>
-    <div class="foot-bottom"><span data-i18n="index.footer_copyright">© 2026 Parasite Notify Corporation</span><span>haco.parasite-notify.com</span></div>
+    <div class="foot-bottom"><span>© 2026 Parasite Notify Corporation</span><span>haco.parasite-notify.com</span></div>
   </div>
 </footer>
 
+<script src="i18n.js"></script>
 <script src="pn-system.js"></script>
 </body>
 </html>
